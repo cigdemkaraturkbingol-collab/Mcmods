@@ -1,0 +1,11 @@
+{
+ "schemaVersion":1,
+ "id":"disaster_overhaul",
+ "version":"${version}",
+ "name":"Disaster Overhaul",
+ "description":"Progressive automatic disasters. Made by Kuzey.",
+ "authors":["Kuzey"],
+ "environment":"*",
+ "entrypoints":{"main":["com.kuzey.mcmods.disaster.DisasterOverhaul"]},
+ "depends":{"fabricloader":">=0.16.9","minecraft":"~1.21.1","java":">=21","fabric-api":"*"}
+}
