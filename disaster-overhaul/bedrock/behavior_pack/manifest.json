@@ -1,0 +1,25 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Disaster Overhaul BP",
+    "description": "Progressive disasters for Minecraft Bedrock — Made by Kuzey",
+    "uuid": "5e59b09a-2b2e-4c75-9f64-3d80d7a0bc31",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 21, 0]
+  },
+  "modules": [
+    {
+      "type": "script",
+      "language": "javascript",
+      "uuid": "69f0e74d-d326-44aa-a129-3f6eddd4f503",
+      "version": [1, 0, 0],
+      "entry": "scripts/main.js"
+    }
+  ],
+  "dependencies": [
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.0.0"
+    }
+  ]
+}
