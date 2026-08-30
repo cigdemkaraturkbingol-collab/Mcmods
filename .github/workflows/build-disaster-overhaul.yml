@@ -1,0 +1,49 @@
+name: Build Disaster Overhaul
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'disaster-overhaul/**'
+      - '.github/workflows/build-disaster-overhaul.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bedrock:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Package mcaddon
+        run: |
+          cd disaster-overhaul/bedrock/behavior_pack
+          zip -r ../../../Disaster-Overhaul-Bedrock.mcpack .
+          cd ../../..
+          cp Disaster-Overhaul-Bedrock.mcpack Disaster-Overhaul-Bedrock.mcaddon
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Disaster-Overhaul-Bedrock
+          path: Disaster-Overhaul-Bedrock.mcaddon
+
+  java:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: disaster-overhaul/java
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10.2'
+      - name: Build Fabric jar
+        run: gradle build --stacktrace
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Disaster-Overhaul-Java
+          path: disaster-overhaul/java/build/libs/*.jar
